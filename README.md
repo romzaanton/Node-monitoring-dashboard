@@ -1,6 +1,6 @@
-# OWASP-on-nuxt-express
+# Node-monitoring-dashboard
 
-> My lovely Nuxt.js project
+> Simple app for node.js monitoring
 
 ## Build Setup
 
