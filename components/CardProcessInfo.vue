@@ -83,6 +83,7 @@
       <button
         :class="['btn', 'btn-outline-danger', 'btn-sm', 'm-1', 'd-flex', 'justify-content-between', cpuMonitorActive ? 'app-active-monitor-button' : '']" 
         type="button"
+        @click="startProcessObserving"
       >
         <span>Live observing</span>
         <AppFeatherIcon
@@ -139,6 +140,9 @@ export default {
       }
     },
     methods: {
+      startProcessObserving() {
+        
+      }
     }
 }
 </script>

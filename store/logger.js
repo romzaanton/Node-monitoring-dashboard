@@ -1,4 +1,3 @@
-import {Action} from 'vuex'
 import { connectionConfig } from '~/server/config/connection.config';
 
 const host = connectionConfig.host;
