@@ -25,7 +25,7 @@
           Requests per second
         </span>
         <span class="card-text flex-grow-0">
-          500 <small class="text-monospace">
+          {{ requestPerSecond }} <small class="text-monospace">
             .rps
           </small>
         </span>
@@ -137,11 +137,14 @@ export default {
       },
       cpuUsage() {
         return this.process.cpuAdjustmentRate ? this.process.cpuAdjustmentRate.toFixed(2) : 0;
+      },
+      requestPerSecond() {
+        return this.process.requestPerSecond;
       }
     },
     methods: {
       startProcessObserving() {
-        
+        this.$store.commit('logger/setProcessInMonitoring', this.process);
       }
     }
 }
