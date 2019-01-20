@@ -5,13 +5,14 @@
   />
 </template>
 <script>
-import * as d3 from 'd3'
-import { cpuUsage } from '~/tests/d3-mockups'
+import * as d3 from 'd3';
+import { cpuUsage } from '~/tests/d3-mockups';
 function createLineChart(parentElm, data) {
   if (parentElm === null || parentElm === undefined) {
     return;
   }
   d3.select('.app-svg-main-group').remove();
+  d3.selectAll('.app-chart-toolptip').remove();
   const domRect = parentElm.getBoundingClientRect();
   const margin = {
     top: 20,

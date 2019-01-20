@@ -24,10 +24,12 @@ export const mutations = {
         const index = state['process-node'].findIndex(v => v.pid === payload.pid);
         if (index >= 0) {
             payload.requestPerSecond = countRequestPerSecond(payload, state['process-node'][index]);
-            state.processInMonitoring = addPerformanceDataToProcessInMonitoring(state.processInMonitoring, payload);
             state['process-node'][index] = payload;
         } else {
             state['process-node'].push(payload);
+        }
+        if (state.processInMonitoring && index >=0 ) {
+            state.processInMonitoring = addPerformanceDataToProcessInMonitoring(state.processInMonitoring, payload);
         }
         if (payload.isMaster) addCpuUtilizationDataToState(state, payload);
         state['process-node'] = state['process-node'].map(v => v);
@@ -133,5 +135,5 @@ function addPerformanceDataToProcessInMonitoring(processInMonitoring, newNode) {
         processInMonitoring.processCpuUtilizationArray.unshift(cpuUtilization);
     }
 
-    return processInMonitoring;
+    return Object.assign({}, processInMonitoring);
 }
