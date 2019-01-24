@@ -66,6 +66,17 @@
               <AppCpuUtilChartLine class="m-1 p-0" />
             </div>
           </div>
+          <div class="card m-1">
+            <h6 class="card-header">
+              OS-MEM utilization
+            </h6>
+            <div class="card-body">
+              <AppChartRadar
+                :externalid="'app-main-dashboard-mem-radar-chart'"
+                class="m-1 p-0"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,6 +89,7 @@ import AppCpuUtilChartLine from "~/components/ChartLineCPUUtilization";
 import AppDashboardSidebar from "~/components/DashboardSidebar";
 import AppDashboardNavbar from "~/components/DashboardNavbar";
 import AppProcessInfoDahsboard from "~/components/ProcessInfoDashboard";
+import AppChartRadar from "~/components/ChartRadar";
 
 export default {
   name: "AppDashboard",
@@ -88,6 +100,7 @@ export default {
     AppDashboardNavbar,
     AppFeatherIcon,
     AppProcessInfoDahsboard,
+    AppChartRadar,
   },
   data: function() {
     return {

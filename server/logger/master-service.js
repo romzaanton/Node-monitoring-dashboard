@@ -52,15 +52,10 @@ function calculateCpuUtilizationRate(newValue, oldValue) {
     newValue.cpuUtilization = 100 - ~~(100*
         (newValue.cpuData.totalIdle - oldValue.cpuData.totalIdle)
         /(newValue.cpuData.totalTime - oldValue.cpuData.totalTime));
-    newValue.processUtilization = (newValue.system + newValue.user)/(oldValue.system + oldValue.user) - 1;
+    newValue.processUtilization = ((newValue.system + newValue.user)/(oldValue.system + oldValue.user) - 1)*100;
     const generalDiff = (newValue.cpuData.user + newValue.cpuData.sys) - (oldValue.cpuData.user + oldValue.cpuData.sys);
     const processDiff = (newValue.user + newValue.system) - (oldValue.user + oldValue.system);
     newValue.cpuAdjustmentRate = processDiff/generalDiff * 100;
-    return newValue;
-}
-
-function calculateRps(newValue, oldValue) {
-    newValue.requestPerSecond = newValue.requestsCount - oldValue.requestsCount;
     return newValue;
 }
 

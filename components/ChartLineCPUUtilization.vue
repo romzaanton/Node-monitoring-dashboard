@@ -1,7 +1,7 @@
 <template>
   <svg
     :data="chartData[chartData.length - 1]" 
-    class="app-chart-cnavas"
+    class="app-chart-canvas"
   />
 </template>
 <script>
@@ -23,7 +23,7 @@ function createLineChart(parentElm, data) {
   const width = domRect.width - margin.left - margin.right;
   const height = 300;
 
-  const svg = d3.select('.app-chart-cnavas');
+  const svg = d3.select('.app-chart-canvas');
   svg.attr('width', width);
   svg.attr('height', height);
   const mainGroup = svg.append('g').attr('class', 'app-svg-main-group');
@@ -153,7 +153,7 @@ $axisColor: #757575;
   font: bold 12px sans-serif;
   fill: $axisColor;
 }
-.app-chart-toolptip {
+.app-chart-tooltip {
   width: 50px;
   height: 20px;
   line-height: 20px;

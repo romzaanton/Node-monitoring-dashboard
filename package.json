@@ -15,7 +15,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@types/body-parser": "^1.17.0",
-    "@types/express": "^4.16.0",
+    "@types/d3": "^5.7.0",
+    "@types/express": "^4.16.1",
     "@types/mongodb": "^3.1.19",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
