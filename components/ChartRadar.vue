@@ -194,42 +194,43 @@ function createPolygons(mainSvgGroup, cfg) {
         const dataValues = [];
         mainSvgGroup.selectAll('.nodes')
         .data(subArray, (item, index) => {
-            dataValues.push([
-                cfg.width / 2 * (1 - (parseFloat(Math.max(item.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(index * cfg.radians/total)), 
-                cfg.height / 2 * (1 - (parseFloat(Math.max(item.value, 0))/cfg.maxValue) * cfg.factor * Math.cos(index * cfg.radians/total))
-            ]);
-		});
-    dataValues.push(dataValues[0]);
-    mainSvgGroup.selectAll('.area')
-    .data([dataValues])
-    .enter()
-    .append('polygon')
-    .attr('class', 'radar-chart-serie' + series)
-    .style('stroke-width', '2px')
-    .style('stroke', cfg.color(series))
-    .attr('points', (d) => {
-        let str = '';
-        for(let pti = 0; pti < d.length; pti++) {
-            str = str + d[pti][0] + ',' + d[pti][1] + '';
-        }
-        return str;
-    })
-    .style('fill', (j, i) => cfg.color(series))
-    .style('fill-opacity', cfg.opacityArea)
-    .on('mouseover', function(d) {
-        let z = 'polygon.' + d3.select(this).attr('class');
-        mainSvgGroup.selectAll('polygon').transition(200)
-        .style('fill-opacity', 0.1); 
-        mainSvgGroup.selectAll(z)
-        .transition(200)
-        .style('fill-opacity', .7);
-    })
-    .on('mouseout', () => {
-        mainSvgGroup.selectAll('polygon')
-        .transition(200)
-        .style('fill-opacity', cfg.opacityArea);
-    });
-	  series++;
+            const x = cfg.width / 2 * (1 - (parseFloat(Math.max(item.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(index * cfg.radians/total));
+            const y = cfg.height / 2 * (1 - (parseFloat(Math.max(item.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(index * cfg.radians/total));
+            dataValues.push([x.toFixed(2), y.toFixed(2)]);
+        });
+        dataValues.push(dataValues[0]);
+        mainSvgGroup.selectAll('.area')
+        .data([dataValues])
+        .enter()
+        .append('polygon')
+        .attr('class', 'radar-chart-series-' + series)
+        .style('stroke-width', '2px')
+        .style('stroke', cfg.color(series))
+        .attr('points', (d) => {
+            let str = '';
+            for(let pti = 0; pti < d.length; pti++) {
+                str = str + d[pti][0] + ',' + d[pti][1] + ' ';
+            }
+            return str;
+        })
+        .style('fill', (j, i) => cfg.color(series))
+        .style('fill-opacity', cfg.opacityArea)
+        .on('mouseover', function (d){
+            const z = 'polygon.' + d3.select(this)
+            .attr('class');
+            mainSvgGroup.selectAll('polygon')
+            .transition(200)
+            .style('fill-opacity', 0.1);
+            mainSvgGroup.selectAll(z)
+            .transition(200)
+            .style('fill-opacity', .7);
+        })
+        .on('mouseout', function(){
+            mainSvgGroup.selectAll('polygon')
+            .transition(200)
+            .style('fill-opacity', cfg.opacityArea);
+        });
+        series++;
 	});
 }
 
