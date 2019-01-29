@@ -31,6 +31,7 @@ export default {
 <style lang="scss">
 .app-dashboard-sidebar {
   background-color: #263544;
+  height: 100vmax;
 }
 .app-dashboard-logo {
   background: url("~assets/node-logo.png") left no-repeat;
