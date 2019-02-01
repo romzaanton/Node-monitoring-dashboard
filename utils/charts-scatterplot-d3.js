@@ -21,4 +21,5 @@ function setXScaleToConfig(config) {
 }
 
 function setXAxisToConfig(config) {
+    const axis = null;
 }
