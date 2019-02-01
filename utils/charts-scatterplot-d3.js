@@ -26,4 +26,6 @@ function setXAxisToConfig(config) {
     const axisY = null;
     const axisZ = null;
     const newFeatureV2 = null;
+    const someNewFeature = null;
+    const newFeatureV3 = null;
 }
