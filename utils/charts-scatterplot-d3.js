@@ -22,4 +22,6 @@ function setXScaleToConfig(config) {
 
 function setXAxisToConfig(config) {
     const axis = null;
+    const axisX = null;
+    const axisY = null;
 }
