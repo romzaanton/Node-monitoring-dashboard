@@ -77,6 +77,17 @@
               />
             </div>
           </div>
+          <div class="card m-1">
+            <h6 class="card-header">
+              NODE scatter plot
+            </h6>
+            <div class="card-body">
+              <AppChartScatterplot
+                :externalid="'app-main-dashboard-scatterplot-chart'"
+                class="m-1 p-0"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +101,7 @@ import AppDashboardSidebar from "~/components/DashboardSidebar";
 import AppDashboardNavbar from "~/components/DashboardNavbar";
 import AppProcessInfoDahsboard from "~/components/ProcessInfoDashboard";
 import AppChartRadar from "~/components/ChartRadar";
+import AppChartScatterplot from "~/components/ChartScatterPlot";
 
 export default {
   name: "AppDashboard",
@@ -101,6 +113,7 @@ export default {
     AppFeatherIcon,
     AppProcessInfoDahsboard,
     AppChartRadar,
+    AppChartScatterplot,
   },
   data: function() {
     return {

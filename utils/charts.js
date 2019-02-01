@@ -1,3 +1,29 @@
+import * as d3 from 'd3';
+// Shared function for charts
+export function deleteSvgChildren(id) {
+  const svg = document.querySelector(`#${id}`);
+  if (svg && svg instanceof Element) {
+    svg.childNodes.forEach(v => v.remove());
+  }
+}
+
+export function setSizeParamsToConfig(container, config) {
+  const size = container.getBoundingClientRect();
+  config.width = size.width;
+  config.height = size.height;
+}
+
+export function setSvgSize(config, id) {
+  d3.select(`#${id}`)
+    .attr('width', config.width)
+    .attr('height', config.height);
+}
+
+export function setColorInterpolatorToConfig(config, scheme) {
+    config.color = d3.scaleOrdinal(scheme);
+}
+//
+
 export function canDrawProcessInMonitoringChart() {
   const processInMonitoring = this.$store.state.logger.processInMonitoring;
   return processInMonitoring && processInMonitoring.processCpuUtilizationArray ? true : false;

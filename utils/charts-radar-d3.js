@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import { deleteSvgChildren, setSizeParamsToConfig, setSvgSize, setColorInterpolatorToConfig } from './charts';
 
 export function createRadarChart(container, id, config) {
   deleteSvgChildren(id);
@@ -8,7 +9,7 @@ export function createRadarChart(container, id, config) {
   setRadiusToConfig(config);
   setRadiusScaleToConfig(config);
   setRadarLineFuncToConfig(config);
-  setColorInterpolatorToConfig(config);
+  setColorInterpolatorToConfig(config, d3.schemeCategory10);
   setSvgSize(config, id);
   setMainSvgGroupToConfig(config, id);
   createGlowFilter(config);
@@ -21,19 +22,6 @@ export function createRadarChart(container, id, config) {
   drawOutlines(config);
   drawDataCircles(config);
   drawTooltip(config);
-}
-
-function deleteSvgChildren(id) {
-  const svg = document.querySelector(`#${id}`);
-  if (svg && svg instanceof Element) {
-    svg.childNodes.forEach(v => v.remove());
-  }
-}
-
-function setSizeParamsToConfig(container, config) {
-  const size = container.getBoundingClientRect();
-  config.width = size.width;
-  config.height = size.height;
 }
 
 function setRadiusToConfig(config) {
@@ -66,16 +54,6 @@ function setRadarLineFuncToConfig(config) {
   config.radarLine.angle((item, index) => index * config.angleSlice);
   config.radarLine.curve(d3.curveLinearClosed);
 
-}
-
-function setColorInterpolatorToConfig(config) {
-  config.color = d3.scaleOrdinal(d3.schemeCategory10);
-}
-
-function setSvgSize(config, id) {
-  d3.select(`#${id}`)
-    .attr('width', config.width)
-    .attr('height', config.height);
 }
 
 function setMainSvgGroupToConfig(config, id) {
